@@ -1,0 +1,30 @@
+# Merge into the active local Codex config.toml; do not replace the whole file.
+# Scope: local Codex runs in the ChatGPT desktop app.
+# Not verified for ordinary ChatGPT chats or hosted Work sessions.
+# Edit existing tables instead of duplicating them.
+# Remove an existing scalar/inline otel.exporter before using these tables.
+
+[otel]
+environment = "desktop-local"
+log_user_prompt = false
+
+[otel.exporter.otlp-http]
+endpoint = "https://dashboard.observagent.cloud/v1/logs"
+protocol = "binary"
+
+[otel.exporter.otlp-http.headers]
+Authorization = "Bearer YOUR_OBSERVAGENT_PROJECT_KEY"
+
+[otel.metrics_exporter.otlp-http]
+endpoint = "https://dashboard.observagent.cloud/v1/metrics"
+protocol = "binary"
+
+[otel.metrics_exporter.otlp-http.headers]
+Authorization = "Bearer YOUR_OBSERVAGENT_PROJECT_KEY"
+
+[otel.trace_exporter.otlp-http]
+endpoint = "https://dashboard.observagent.cloud/v1/traces"
+protocol = "binary"
+
+[otel.trace_exporter.otlp-http.headers]
+Authorization = "Bearer YOUR_OBSERVAGENT_PROJECT_KEY"
